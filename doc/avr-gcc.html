@@ -1,0 +1,568 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+<title>avr-gcc - GCC Wiki</title>
+<script type="text/javascript" src="/moin_static197/common/js/common.js"></script>
+
+<script type="text/javascript">
+<!--
+var search_hint = "Search";
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/moin_static197/modern/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/moin_static197/modern/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="/moin_static197/modern/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="/moin_static197/modern/css/projection.css">
+
+<!-- css only for MS IE6/IE7 browsers -->
+<!--[if lt IE 8]>
+   <link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="/moin_static197/modern/css/msie.css">
+<![endif]-->
+
+
+<link rel="alternate" title="GCC Wiki: avr-gcc" href="/wiki/avr-gcc?diffs=1&amp;show_att=1&amp;action=rss_rc&amp;unique=0&amp;page=avr-gcc&amp;ddiffs=1" type="application/rss+xml">
+
+
+<link rel="Start" href="/wiki/HomePage">
+<link rel="Alternate" title="Wiki Markup" href="/wiki/avr-gcc?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/wiki/avr-gcc?action=print">
+<link rel="Search" href="/wiki/FindPage">
+<link rel="Index" href="/wiki/TitleIndex">
+<link rel="Glossary" href="/wiki/WordIndex">
+<link rel="Help" href="/wiki/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/wiki/HomePage">GCC Wiki</a></div>
+
+<form id="searchform" method="get" action="/wiki/avr-gcc">
+<div>
+<input type="hidden" name="action" value="fullsearch">
+<input type="hidden" name="context" value="180">
+<label for="searchinput">Search:</label>
+<input id="searchinput" type="text" name="value" value="" size="20"
+    onfocus="searchFocus(this)" onblur="searchBlur(this)"
+    onkeyup="searchChange(this)" onchange="searchChange(this)" alt="Search">
+<input id="titlesearch" name="titlesearch" type="submit"
+    value="Titles" alt="Search Titles">
+<input id="fullsearch" name="fullsearch" type="submit"
+    value="Text" alt="Search Full Text">
+</div>
+</form>
+<script type="text/javascript">
+<!--// Initialize search form
+var f = document.getElementById('searchform');
+f.getElementsByTagName('label')[0].style.display = 'none';
+var e = document.getElementById('searchinput');
+searchChange(e);
+searchBlur(e);
+//-->
+</script>
+
+<ul id="username"><li><a href="/wiki/avr-gcc?action=login" id="login" rel="nofollow">Login</a></li></ul>
+<div id="locationline">
+<div id="interwiki"><span><a href="/wiki/HomePage" rel="nofollow">Self</a></span></div>
+
+<ul id="pagelocation">
+<li><a class="backlink" href="/wiki/avr-gcc?action=fullsearch&amp;context=180&amp;value=linkto%3A%22avr-gcc%22" rel="nofollow" title="Click to do a full-text search for this title">avr-gcc</a></li>
+</ul>
+
+</div>
+
+
+<ul id="navibar">
+<li class="wikilink"><a href="/wiki/HomePage">HomePage</a></li><li class="wikilink"><a href="/wiki/RecentChanges">RecentChanges</a></li><li class="wikilink"><a href="/wiki/FindPage">FindPage</a></li><li class="wikilink"><a href="/wiki/HelpContents">HelpContents</a></li><li class="current"><a href="/wiki/avr-gcc">avr-gcc</a></li>
+</ul>
+
+<div id="pageline"><hr style="display:none;"></div>
+
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li class="toggleCommentsButton" style="display:none;"><a href="#" class="nbcomment" onClick="toggleComments();return false;">Comments</a></li><li><a class="nbinfo" href="/wiki/avr-gcc?action=info" rel="nofollow">Info</a></li><li><a class="nbattachments" href="/wiki/avr-gcc?action=AttachFile" rel="nofollow">Attachments</a></li><li>
+<form class="actionsmenu" method="GET" action="/wiki/avr-gcc">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="show" disabled class="disabled">Subscribe User</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="show" disabled class="disabled">Remove Spam</option>
+<option value="show" disabled class="disabled">Revert to this revision</option>
+<option value="PackagePages">Package Pages</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="Load">Load</option>
+<option value="Save">Save</option>
+<option value="SlideShow">SlideShow</option>
+    </select>
+    <input type="submit" value="Do">
+    
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867"><div class="table-of-contents"><p class="table-of-contents-heading">Contents<ol><li>
+<a href="#ABI">ABI</a><ol><li>
+<a href="#Type_Layout">Type Layout</a><ol><li>
+<a href="#Deviations_from_the_Standard">Deviations from the Standard</a></li><li>
+<a href="#Fixed-Point_Support">Fixed-Point Support</a></li></ol></li><li>
+<a href="#Register_Layout">Register Layout</a><ol><li>
+<a href="#Fixed_Registers">Fixed Registers</a></li><li>
+<a href="#Call-Used_Registers">Call-Used Registers</a></li><li>
+<a href="#Call-Saved_Registers">Call-Saved Registers</a></li></ol></li><li>
+<a href="#Frame_Layout">Frame Layout</a></li><li>
+<a href="#Calling_Convention">Calling Convention</a><ol><li>
+<a href="#Exceptions_to_the_Calling_Convention">Exceptions to the Calling Convention</a></li></ol></li></ol></li><li>
+<a href="#Extensions">Extensions</a><ol><li>
+<a href="#Types">Types</a></li><li>
+<a href="#Attributes">Attributes</a></li><li>
+<a href="#Pragmas">Pragmas</a></li><li>
+<a href="#Address_Spaces">Address Spaces</a></li></ol></li><li>
+<a href="#Using_avr-gcc">Using avr-gcc</a><ol><li>
+<a href="#Supporting_.22unsupported.22_Devices">Supporting "unsupported" Devices</a><ol><li>
+<a href="#The_Device_Header_avr.2BAC8-io.h">The Device Header avr/io.h</a></li><li>
+<a href="#Compiling_the_Code">Compiling the Code</a></li></ol></li></ol></li></ol></div> <span class="anchor" id="line-2"></span><span class="anchor" id="line-3"></span><p class="line867">
+<h1 id="ABI">ABI</h1>
+<span class="anchor" id="line-4"></span><span class="anchor" id="line-5"></span><p class="line862">Application Binary Interface and implementation defined behavior of avr-gcc.  Object format bits are not discussed here. See also <a class="http" href="http://gcc.gnu.org/onlinedocs/gcc/C-Implementation.html">C Implementation-defined behavior</a>. <span class="anchor" id="line-6"></span><span class="anchor" id="line-7"></span><p class="line867">
+<h2 id="Type_Layout">Type Layout</h2>
+<span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span><div><table><tbody><tr>  <td><p class="line862"> <strong>default</strong> </td>
+  <td><p class="line862"> sizeof </td>
+  <td><p class="line862"> Note </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-10"></span><p class="line862"> char      </td>
+  <td><p class="line862"> 1 </td>
+  <td><p class="line862"> signed </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-11"></span><p class="line862"> short     </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-12"></span><p class="line862"> int       </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-13"></span><p class="line862"> long      </td>
+  <td><p class="line862"> 4 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-14"></span><p class="line862"> long long  </td>
+  <td><p class="line862"> 8 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-15"></span><p class="line862"> size_t     </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> unsigned int </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-16"></span><p class="line862"> ptrdiff_t  </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> int </td>
+</tr>
+<tr>  <td colspan="3" style="text-align: center"><span class="anchor" id="line-17"></span><p class="line862">  </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-18"></span><p class="line862"> void*      </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-19"></span><p class="line862"> float     </td>
+  <td><p class="line862"> 4 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-20"></span><p class="line862"> double    </td>
+  <td><p class="line862"> 4 </td>
+  <td><p class="line862"> non-Standard </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-21"></span><p class="line862"> wchar_t   </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span><p class="line867">
+<h3 id="Deviations_from_the_Standard">Deviations from the Standard</h3>
+<span class="anchor" id="line-24"></span><span class="anchor" id="line-25"></span><dl><dt>double</dt><dd><span class="anchor" id="line-26"></span></dd><dt></dt><dd><p class="line891"><tt>double</tt> is only 32 bits wide and implemented in the same way as <tt>float</tt> <span class="anchor" id="line-27"></span></dd><dt>8-bit int with -mint8</dt><dd><span class="anchor" id="line-28"></span></dd><dt></dt><dd><p class="line862">With <tt>-mint8</tt> int is only 8 bits wide which does not comply to the C standard. Notice that <tt>-mint8</tt> is not a multilib option and neither supported by AVR-Libc (except <tt>stdint.h</tt>) nor by newlib. <span class="anchor" id="line-29"></span><li style="list-style-type:none"><div><table><tbody><tr>  <td><p class="line862"> <strong><tt>-mint8</tt></strong> </td>
+  <td><p class="line862"> sizeof </td>
+  <td><p class="line862"> Note </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-30"></span><p class="line862"> char      </td>
+  <td><p class="line862"> 1 </td>
+  <td><p class="line862"> signed </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-31"></span><p class="line862"> short     </td>
+  <td><p class="line862"> 1 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-32"></span><p class="line862"> int       </td>
+  <td><p class="line862"> 1 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-33"></span><p class="line862"> long      </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-34"></span><p class="line862"> long long  </td>
+  <td><p class="line862"> 4 </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-35"></span><p class="line862"> size_t     </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> long unsigned int </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-36"></span><p class="line862"> prtdiff_t  </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> long int </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span></li></dd></dl><p class="line867">
+<h3 id="Fixed-Point_Support">Fixed-Point Support</h3>
+<span class="anchor" id="line-39"></span><span class="anchor" id="line-40"></span><p class="line874">avr-gcc 4.8 and up supports fixed point arithmetic according to ISO/IEC TR 18037. <span class="anchor" id="line-41"></span>The support is not complete. <span class="anchor" id="line-42"></span>The type layouts are as follows: <span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span><div><table><tbody><tr>  <td><p class="line862"> Type </td>
+  <td><p class="line862"> sizeof </td>
+  <td><p class="line862"> unsigned </td>
+  <td><p class="line862"> signed </td>
+  <td><p class="line862"> Note </td>
+</tr>
+<tr>  <td colspan="5" style="text-align: left"><span class="anchor" id="line-45"></span><p class="line862"> <strong><tt>_Fract</tt></strong> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-46"></span><p class="line862"> short     </td>
+  <td><p class="line862"> 1 </td>
+  <td><p class="line862"> 0.8     </td>
+  <td><p class="line862"> ±.7   </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-47"></span><p class="line862"> &mdash;   </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> 0.16    </td>
+  <td><p class="line862"> ±.15  </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-48"></span><p class="line862"> long      </td>
+  <td><p class="line862"> 4 </td>
+  <td><p class="line862"> 0.32    </td>
+  <td><p class="line862"> ±.31  </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-49"></span><p class="line862"> long long </td>
+  <td><p class="line862"> 8 </td>
+  <td><p class="line862"> 0.64    </td>
+  <td><p class="line862"> ±.63  </td>
+  <td><p class="line862"> GCC extension </td>
+</tr>
+<tr>  <td colspan="5" style="text-align: left"><span class="anchor" id="line-50"></span><p class="line862"> <strong><tt>_Accum</tt></strong> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-51"></span><p class="line862"> short     </td>
+  <td><p class="line862"> 2 </td>
+  <td><p class="line862"> &nbsp;&nbsp;&nbsp;8.8 </td>
+  <td><p class="line862"> &nbsp;&nbsp;&nbsp;±8.7   </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-52"></span><p class="line862"> &mdash;   </td>
+  <td><p class="line862"> 4 </td>
+  <td><p class="line862"> 16.16    </td>
+  <td><p class="line862"> ±16.15   </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-53"></span><p class="line862"> long      </td>
+  <td><p class="line862"> 8 </td>
+  <td><p class="line862"> 32.32    </td>
+  <td><p class="line862"> ±32.31   </td>
+  <td><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-54"></span><p class="line862"> long long </td>
+  <td><p class="line862"> 8 </td>
+  <td><p class="line862"> 16.48    </td>
+  <td><p class="line862"> ±16.47   </td>
+  <td><p class="line862"> GCC extension </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span><p class="line874">Overflow behavior of the non-saturated arithmetic is unspecified. <span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span><p class="line874">Please notice that some private ports found on the web implement different layouts. <span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span><p class="line867">
+<h2 id="Register_Layout">Register Layout</h2>
+<span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span><p class="line874">Values that occupy more than one 8-bit register start in an even register. <span class="anchor" id="line-63"></span><span class="anchor" id="line-64"></span><p class="line867">
+<h3 id="Fixed_Registers">Fixed Registers</h3>
+<span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span><p class="line867"><em>Fixed Registers</em> are registers that won't be allocated by GCC's register allocator.  Registers R0 and R1 are fixed and used implicitly while printing out assembler instructions: <span class="anchor" id="line-67"></span><span class="anchor" id="line-68"></span><dl><dt>R0</dt><dd><p class="line862">is used as scratch register that need not to be restored after its usage. It must be saved and restored in interrupt service routine's (ISR) prologue and epilogue.  In inline assembler you can use <tt>__tmp_reg__</tt> for the scratch register. <span class="anchor" id="line-69"></span></dd><dt>R1</dt><dd><p class="line862">always contains zero. During an insn the content might be destroyed, e.g. by a MUL instruction that uses R0/R1 as implicit output register.  If an insn destroys R1, the insn must restore R1 to zero afterwards. This register must be saved in ISR prologues and must then be set to zero because R1 might contain values other than zero.  The ISR epilogue restores the value. In inline assembler you can use <tt>__zero_reg__</tt> for the zero register. <span class="anchor" id="line-70"></span></dd><dt>T</dt><dd>the T flag in the status register (SREG) is used in the same way like the temporary scratch register R0. <span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span></dd></dl><p class="line862">User-defined global registers by means of global <tt>register&nbsp;asm</tt> and / or <tt>-ffixed-</tt><em>n</em> won't be saved or restored in function pro- and epilogue. <span class="anchor" id="line-73"></span><span class="anchor" id="line-74"></span><p class="line867">
+<h3 id="Call-Used_Registers">Call-Used Registers</h3>
+<span class="anchor" id="line-75"></span><span class="anchor" id="line-76"></span><p class="line862">The <em>call-used</em> or <em>call-clobbered</em> general purpose registers (GPRs) are registers that might be destroyed (clobbered) by a function call. <span class="anchor" id="line-77"></span><dl><dt>R18–R27, R30, R31</dt><dd>These GPRs are call clobbered.  An ordinary function may use them without restoring the contents.  Interrupt service routines (ISRs) must save and restore each register they use. <span class="anchor" id="line-78"></span></dd><dt>R0, T-Flag</dt><dd>The temporary register and the T-flag in SREG are also call-clobbered, but this knowledge is not exposed explicitly to the compiler (R0 is a fixed register). <span class="anchor" id="line-79"></span><span class="anchor" id="line-80"></span></dd></dl><p class="line867">
+<h3 id="Call-Saved_Registers">Call-Saved Registers</h3>
+<span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span><dl><dt>R2–R17, R28, R29</dt><dd>The remaining GPRs are call-saved, i.e. a function that uses such a registers must restore its original content.  This applies even if the register is used to pass a function argument. <span class="anchor" id="line-83"></span></dd><dt>R1</dt><dd>The zero-register is implicity call-saved (implicit because R1 is a fixed register). <span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span></dd></dl><p class="line867">
+<h2 id="Frame_Layout">Frame Layout</h2>
+<span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><p class="line867"><span class="anchor" id="line-88"></span><span class="anchor" id="line-89"></span><span class="anchor" id="line-90"></span><span class="anchor" id="line-91"></span><span class="anchor" id="line-92"></span><span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span><span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span><span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span><span class="anchor" id="line-99"></span><span class="anchor" id="line-100"></span><span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span><span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span><span class="anchor" id="line-105"></span><span class="anchor" id="line-106"></span><span class="anchor" id="line-107"></span><span class="anchor" id="line-108"></span><span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span><span class="anchor" id="line-111"></span><div class="rcrss"><span class="anchor" id="line-1-1"></span><p class="line867"><strong>Frame Layout after Function Prologue</strong> <span class="anchor" id="line-2-1"></span><span class="anchor" id="line-3-1"></span><div><table><tbody><tr>  <td><p class="line862"> </td>
+  <td colspan="1" rowspan="6" style="text-align: left"><p class="line862"> incoming arguments </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-4-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-5-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-6-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-7-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-8-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-9-1"></span><p class="line862"> </td>
+  <td colspan="1" rowspan="3" style="text-align: left"><p class="line862"> return address (2–3 bytes) </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-10-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-11-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-12-1"></span><p class="line862"> </td>
+  <td colspan="1" rowspan="6" style="text-align: left"><p class="line862"> saved registers </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-13-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-14-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-15-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-16-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-17-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-18-1"></span><p class="line862"> </td>
+  <td colspan="1" rowspan="6" style="text-align: left"><p class="line862"> stack slots, Y+1 points at the bottom </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-19-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-20-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-21-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-22-1"></span><p class="line862"> </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-23-1"></span><p class="line862"> </td>
+</tr>
+</tbody></table></div></div><span class="anchor" id="line-112"></span><span class="anchor" id="line-113"></span><p class="line862">During compilation the compiler may come up with an arbitrary number of <em>pseudo registers</em> which will be allocated to <em>hard registers</em> during register allocation. <span class="anchor" id="line-114"></span><span class="anchor" id="line-115"></span><ul><li>Pseudos that don't get a hard register will be put into a stack slot and loaded / stored as needed. <span class="anchor" id="line-116"></span></li><li>In order to access stack locations, avr-gcc will set up a 16-bit frame pointer in R29:R28 (Y) because the stack pointer (SP) cannot be used to access stack slots. <span class="anchor" id="line-117"></span></li><li>The stack grows downwards.  Smaller addresses are at the bottom of the drawing at the right. <span class="anchor" id="line-118"></span></li><li>Stack pointer and frame pointer are not aligned, i.e. 1-byte aligned. <span class="anchor" id="line-119"></span></li><li>After the function prologue, the frame pointer will point one byte below the stack frame, i.e. Y+1 points to the bottom of the stack frame. <span class="anchor" id="line-120"></span></li><li>Any of "incoming arguments", "saved registers" or "stack slots" in the drawing at the right may be empty. <span class="anchor" id="line-121"></span></li><li>Even "return address" may be empty which happens for functions that are tail-called. <span class="anchor" id="line-122"></span><span class="anchor" id="line-123"></span></li></ul><p class="line867">
+<h2 id="Calling_Convention">Calling Convention</h2>
+<span class="anchor" id="line-124"></span><span class="anchor" id="line-125"></span><ul><li>An argument is passed either completely in registers or completely in memory. <span class="anchor" id="line-126"></span></li><li><p class="line862">To find the register where a function argument is passed, initialize the register number <em>R<sub>n</sub></em> with R26 and follow this procedure: <span class="anchor" id="line-127"></span><ol type="1"><li>If the argument size is an odd number of bytes, round up the size to the next even number. <span class="anchor" id="line-128"></span></li><li><p class="line862">Subtract the rounded size from the register number <em>R<sub>n</sub></em>. <span class="anchor" id="line-129"></span></li><li><p class="line862">If the new <em>R<sub>n</sub></em> is at least R8 and the size of the object is non-zero, then the low-byte of the argument is passed in <em>R<sub>n</sub></em>.  Subsequent bytes of the argument are passed in the subsequent registers, i.e. in increasing register numbers. <span class="anchor" id="line-130"></span></li><li><p class="line862">If the new register number <em>R<sub>n</sub></em> is smaller than R8 or the size of the argument is zero, the argument will be passed in memory. <span class="anchor" id="line-131"></span></li><li>If the current argument is passed in memory, stop the procedure: All subsequent arguments will also be passed in memory. <span class="anchor" id="line-132"></span></li><li>If there are arguments left, goto 1. and proceed with the next argument. <span class="anchor" id="line-133"></span></li></ol></li><li>Return values with a size of 1 byte up to and including a size of 8 bytes will be returned in registers.  Return values whose size is outside that range will be returned in memory. <span class="anchor" id="line-134"></span></li><li>If a return value cannot be returned in registers, the caller will allocate stack space and pass the address as implicit first pointer argument to the callee.  The callee will put the return value into the space provided by the caller. <span class="anchor" id="line-135"></span></li><li>If  the return value of a function is returned in registers, the same registers are used as if the value was the first parameter of a non-varargs function. For example, an 8-bit value is returned in R24 and an 32-bit value is returned R22...R25. <span class="anchor" id="line-136"></span></li><li>Arguments of varargs functions are passed on the stack.  This applies even to the named arguments. <span class="anchor" id="line-137"></span><span class="anchor" id="line-138"></span></li></ul><p class="line874">For example, suppose a function with the following prototype: <span class="anchor" id="line-139"></span><ul><li style="list-style-type:none"><p class="line891"><tt>int&nbsp;func&nbsp;(char&nbsp;a,&nbsp;long&nbsp;b);</tt> <span class="anchor" id="line-140"></span></li></ul><p class="line874">then <span class="anchor" id="line-141"></span><ul><li>a will be passed in R24. <span class="anchor" id="line-142"></span></li><li>b will be passed in R20, R21, R22 and R23 with the LSB in R20 and the MSB in R23. <span class="anchor" id="line-143"></span></li><li>The result is returned in R24 (LSB) and R25 (MSB). <span class="anchor" id="line-144"></span><span class="anchor" id="line-145"></span></li></ul><p class="line867">
+<h3 id="Exceptions_to_the_Calling_Convention">Exceptions to the Calling Convention</h3>
+<span class="anchor" id="line-146"></span><span class="anchor" id="line-147"></span><p class="line874">GCC comes with libgcc, a runtime support library.  This library implements functions that are too complicated to be emit inline by GCC.  What functions are used when depends on the target architecture, what instructions are available, how expensive they are and on the optimization level. <span class="anchor" id="line-148"></span><span class="anchor" id="line-149"></span><p class="line874">Functions in libgcc are implemented in C or hand-written assembly.  In the latter case, some functions use a special ABI that allows better code generation by the compiler. <span class="anchor" id="line-150"></span><span class="anchor" id="line-151"></span><p class="line862">For example, the function that computes unsigned 8-bit quotient and remainder, <tt>__udivmodqi4</tt>, just returns the quotient and the remainter and clobbers R22 and R23.  The compiler knows that the function does not destroy R30, for example, and may hold a value in R30 across the function call.  This reduces the register pressure in functions that call <tt>__udivmodqi4</tt>. <span class="anchor" id="line-152"></span><span class="anchor" id="line-153"></span><div><table><tbody><tr>  <td><p class="line862"> <strong>Function</strong> </td>
+  <td><p class="line862"> <strong>Availability</strong> </td>
+  <td><p class="line862">  <strong>Operation</strong> </td>
+  <td><p class="line862"> <strong>Clobbers</strong> </td>
+  <td style="width: 30%; text-align: center"><p class="line862"> <strong>Description</strong> </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-154"></span><p class="line862"> <tt>__umulhisi3</tt> </td>
+  <td><p class="line862"> 4.7+ &amp;&amp; MUL </td>
+  <td><p class="line862"> <tt>SI:22&nbsp;=&nbsp;HI:26&nbsp;*&nbsp;HI:18</tt> </td>
+  <td><p class="line862"> R<sub>tmp</sub> </td>
+  <td><p class="line862"> Multiply 2 unsigned 16-bit integers to a 32-bit result </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-155"></span><p class="line862"> <tt>__mulhisi3</tt>  </td>
+  <td><p class="line862"> 4.7+ &amp;&amp; MUL </td>
+  <td><p class="line862"> <tt>SI:22&nbsp;=&nbsp;HI:26&nbsp;*&nbsp;HI:18</tt> </td>
+  <td><p class="line862"> R<sub>tmp</sub> </td>
+  <td><p class="line862"> Multiply 2 signed 16-bit integers to a 32-bit result </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-156"></span><p class="line862"> <tt>__usmulhisi3</tt>  </td>
+  <td><p class="line862"> 4.7+ &amp;&amp; MUL </td>
+  <td><p class="line862"> <tt>SI:22&nbsp;=&nbsp;HI:26&nbsp;*&nbsp;HI:18</tt> </td>
+  <td><p class="line862"> R<sub>tmp</sub> </td>
+  <td><p class="line862"> Multiply the signed 16-bit integer in R26 with the unsigned 16-bit integer in R18 to a 32-bit result </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-157"></span><p class="line862"> <tt>__muluhisi3</tt>  </td>
+  <td><p class="line862"> 4.7+ &amp;&amp; MUL </td>
+  <td><p class="line862"> <tt>SI:22&nbsp;=&nbsp;HI:26&nbsp;*&nbsp;SI:18</tt> </td>
+  <td><p class="line862"> R<sub>tmp</sub> </td>
+  <td><p class="line862"> Multiply an unsigned 16-bit integer with a 32-bit integer to a 32-bit result </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-158"></span><p class="line862"> <tt>__mulshisi3</tt>  </td>
+  <td><p class="line862"> 4.7+ &amp;&amp; MUL </td>
+  <td><p class="line862"> <tt>SI:22&nbsp;=&nbsp;HI:26&nbsp;*&nbsp;SI:18</tt> </td>
+  <td><p class="line862"> R<sub>tmp</sub> </td>
+  <td><p class="line862"> Multiply a signed 16-bit integer with a 32-bit integer to a 32-bit result </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-159"></span><p class="line862"> <tt>__udivmodqi4</tt> </td>
+  <td><p class="line862"> </td>
+  <td><p class="line862"> <tt>QI:24&nbsp;=&nbsp;QI:24&nbsp;/&nbsp;QI:22</tt> <br>
+ <tt>QI:25&nbsp;=&nbsp;QI:24&nbsp;%&nbsp;QI:22</tt> </td>
+  <td><p class="line862"> R<sub>23</sub> </td>
+  <td><p class="line862"> Unsigned 8-bit integer quotient and remainder </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-160"></span><p class="line862"> <tt>__divmodqi4</tt> </td>
+  <td><p class="line862"> </td>
+  <td><p class="line862"> <tt>QI:24&nbsp;=&nbsp;QI:24&nbsp;/&nbsp;QI:22</tt> <br>
+ <tt>QI:25&nbsp;=&nbsp;QI:24&nbsp;%&nbsp;QI:22</tt> </td>
+  <td><p class="line862"> R<sub>23</sub>, R<sub>tmp</sub>, T </td>
+  <td><p class="line862"> Signed 8-bit integer quotient and remainder </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-161"></span><p class="line862"> <tt>__udivmodhi4</tt> </td>
+  <td><p class="line862"> </td>
+  <td><p class="line862"> <tt>HI:22&nbsp;=&nbsp;HI:24&nbsp;/&nbsp;HI:22</tt> <br>
+ <tt>HI:24&nbsp;=&nbsp;HI:24&nbsp;%&nbsp;HI:22</tt> </td>
+  <td><p class="line862"> R<sub>21</sub>, R<sub>26...27</sub> </td>
+  <td><p class="line862"> Unsigned 16-bit integer quotient and remainder </td>
+</tr>
+<tr>  <td style="vertical-align: top"><span class="anchor" id="line-162"></span><p class="line862"> <tt>__divmodhi4</tt> </td>
+  <td><p class="line862"> </td>
+  <td><p class="line862"> <tt>HI:22&nbsp;=&nbsp;HI:24&nbsp;/&nbsp;HI:22</tt> <br>
+ <tt>HI:24&nbsp;=&nbsp;HI:24&nbsp;%&nbsp;HI:22</tt> </td>
+  <td><p class="line862"> R<sub>21</sub>, R<sub>26...27</sub>, R<sub>tmp</sub>, T </td>
+  <td><p class="line862"> Signed 16-bit integer quotient and remainder </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-163"></span><span class="anchor" id="line-164"></span><p class="line862">The <em>Operation</em> column uses GCC's machine modes to describe how values in registers are interpreted. <span class="anchor" id="line-165"></span><span class="anchor" id="line-166"></span><div><table><tbody><tr>  <td><p class="line862"> <strong>Machine Modes</strong> </td>
+  <td><p class="line862"> <strong>Q</strong>arter, 8 bit </td>
+  <td><p class="line862"> <strong>H</strong>alf, 16 bit </td>
+  <td><p class="line862"> <strong>S</strong>ingle, 32 bit </td>
+  <td><p class="line862"> <strong>D</strong>ouble, 64 bit </td>
+  <td><p class="line862"> <strong>P</strong>artial <strong>S</strong>ingle, 24 bit </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-167"></span><p class="line862"> <strong>I</strong>nteger               </td>
+  <td><p class="line862"> QI </td>
+  <td><p class="line862"> HI  </td>
+  <td><p class="line862"> SI  </td>
+  <td><p class="line862"> DI </td>
+  <td><p class="line862"> PSI </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-168"></span><p class="line862"> <strong>F</strong>loat                 </td>
+  <td><p class="line862"> –  </td>
+  <td><p class="line862"> –   </td>
+  <td><p class="line862"> SF  </td>
+  <td><p class="line862"> –  </td>
+  <td><p class="line862"> – </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-169"></span><p class="line862"> Signed _<strong>A</strong>ccum         </td>
+  <td><p class="line862"> –  </td>
+  <td><p class="line862">  HA </td>
+  <td><p class="line862">  SA </td>
+  <td><p class="line862">  DA </td>
+  <td><p class="line862"> – </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-170"></span><p class="line862"> Signed _Fract (<strong>Q</strong>-Format) </td>
+  <td><p class="line862"> QQ </td>
+  <td><p class="line862">  HQ </td>
+  <td><p class="line862">  SQ </td>
+  <td><p class="line862">  DQ </td>
+  <td><p class="line862"> – </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-171"></span><p class="line862"> <strong>U</strong>nsigned _<strong>A</strong>ccum </td>
+  <td><p class="line862"> –  </td>
+  <td><p class="line862"> UHA </td>
+  <td><p class="line862"> USA </td>
+  <td><p class="line862"> UDA </td>
+  <td><p class="line862"> – </td>
+</tr>
+<tr>  <td><span class="anchor" id="line-172"></span><p class="line862"> <strong>U</strong>nsigned _Fract (<strong>Q</strong>-Format) </td>
+  <td><p class="line862"> UQQ </td>
+  <td><p class="line862"> UHQ </td>
+  <td><p class="line862"> USQ </td>
+  <td><p class="line862"> UDQ </td>
+  <td><p class="line862"> – </td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-173"></span><span class="anchor" id="line-174"></span><p class="line867">
+<h1 id="Extensions">Extensions</h1>
+<span class="anchor" id="line-175"></span><span class="anchor" id="line-176"></span><p class="line867">
+<h2 id="Types">Types</h2>
+<span class="anchor" id="line-177"></span><ul><li><p class="line862">Signed and unsigned 24-bit integers: <tt>__int24</tt> (4.7), <tt>__uint24</tt> (4.7). <span class="anchor" id="line-178"></span><span class="anchor" id="line-179"></span></li></ul><p class="line867">
+<h2 id="Attributes">Attributes</h2>
+<span class="anchor" id="line-180"></span><ul><li><p class="line862">Variable: <tt>progmem</tt>. <span class="anchor" id="line-181"></span></li><li><p class="line862">Function: <tt>interrupt</tt>, <tt>naked</tt>, <tt>OS_main</tt> (4.4), <tt>OS_task</tt> (4.4), <tt>signal</tt>. <span class="anchor" id="line-182"></span></li><li>Type: (none). <span class="anchor" id="line-183"></span><span class="anchor" id="line-184"></span></li></ul><p class="line867">
+<h2 id="Pragmas">Pragmas</h2>
+<span class="anchor" id="line-185"></span><ul><li style="list-style-type:none">(none) <span class="anchor" id="line-186"></span><span class="anchor" id="line-187"></span></li></ul><p class="line867">
+<h2 id="Address_Spaces">Address Spaces</h2>
+<span class="anchor" id="line-188"></span><ul><li style="list-style-type:none"><p class="line891"><tt>__flash</tt> (4.7),  <tt>__flash1</tt> ... <tt>__flash5</tt> (4.7),  <tt>__memx</tt> (4.7). <span class="anchor" id="line-189"></span><span class="anchor" id="line-190"></span></li></ul><p class="line867">
+<h1 id="Using_avr-gcc">Using avr-gcc</h1>
+<span class="anchor" id="line-191"></span><span class="anchor" id="line-192"></span><p class="line867">
+<h2 id="Supporting_.22unsupported.22_Devices">Supporting "unsupported" Devices</h2>
+<span class="anchor" id="line-193"></span><span class="anchor" id="line-194"></span><p class="line862">avr-gcc and avr-as support the <tt>-mmcu=</tt><em>device</em> command line option to generate code for a specific device.  Currently (2012), there are more than 200 known AVR devices and the hardware vendor keeps releasing new devices. If you need support for such a device and don't want to rebuild the tools, you can  <span class="anchor" id="line-195"></span><span class="anchor" id="line-196"></span><ol type="1"><li><p class="line862">Sit and wait until support for your <tt>-mmcu=</tt><em>device</em> is added to the tools. <span class="anchor" id="line-197"></span></li><li><p class="line862">Use appropriate command line options to compile for your favorite <em>device</em>. <span class="anchor" id="line-198"></span><span class="anchor" id="line-199"></span></li></ol><p class="line874">Approach 1 is comfortable but slow. Lazy developers that don't care for time-to-market will use it. <span class="anchor" id="line-200"></span><span class="anchor" id="line-201"></span><p class="line862">Approach 2 is preferred if you want to start development as soon as possible and don't want to wait until the tool chain with respective device support is released. <strong>This approach is only possible if the compiler and binutils already come with support for the core architecture of your device.</strong> <span class="anchor" id="line-202"></span><span class="anchor" id="line-203"></span><p class="line862">When you feed code into the compiler and compile for a specific device, the compiler will only care for the respective core; it won't care for the exact device.  It does not matter to the compiler how many I/O pins the device has, at what voltage it operates, how much RAM is present, how many timers or UARTs are on the silicon or in what package it is shipped.  The only thing the compiler does with <tt>-mmcu=</tt><em>device</em> is to build-in define a specific macro and to call the linker in a specific way, i.e. the compiler driver behaves a bit differently, but the sub-tools like compiler proper and assembler will generate exactly the same code. <span class="anchor" id="line-204"></span><span class="anchor" id="line-205"></span><p class="line874">Thus, you can support your device by setting these options by hand. <span class="anchor" id="line-206"></span><span class="anchor" id="line-207"></span><p class="line874">Additionally, we need the following to compile a C program: <span class="anchor" id="line-208"></span><span class="anchor" id="line-209"></span><ul><li><p class="line862">A device support header <tt>avr/io.h</tt> similar to the headers provided by <a class="http" href="http://nongnu.org/avr-libc">AVR Libc</a>. <span class="anchor" id="line-210"></span></li><li>Startup code for the device. <span class="anchor" id="line-211"></span><span class="anchor" id="line-212"></span></li></ul><p class="line867">
+<h3 id="The_Device_Header_avr.2BAC8-io.h">The Device Header avr/io.h</h3>
+<span class="anchor" id="line-213"></span><span class="anchor" id="line-214"></span><p class="line874">This header and its subheaders contain almost all infomation about a particular device like SFR addresses, size of the interrupt table and interrupt names, etc. <span class="anchor" id="line-215"></span><span class="anchor" id="line-216"></span><p class="line874">After all, it's just text and you can write it yourself.  Find a device that is already supported by AVR Libc and that is similar enough to your new device to serve as a reasonable starting point for the new device description. <span class="anchor" id="line-217"></span><span class="anchor" id="line-218"></span><p class="line874">If you are lucky, the device it already supported by AVR Libc but not yet by the compiler. In that case, you can use verbatim copies from AVR Libc. <span class="anchor" id="line-219"></span><span class="anchor" id="line-220"></span><p class="line862">Yet another approch is to write the file from scratch or not to use <tt>avr/io.h</tt> like headers at all.  I that case, you provide all needed definitions like, say, SP and size of the vector table yourself. <span class="anchor" id="line-221"></span><span class="anchor" id="line-222"></span><p class="line862">If your toolchain is distributed with AVR Libc then <tt>avr/io.h</tt> is located in the installation directory at <tt>./avr/include</tt> i.e. you find a file <tt>io.h</tt> in <tt>./avr/include/avr</tt>.  In that file you find the lines: <span class="anchor" id="line-223"></span><span class="anchor" id="line-224"></span><p class="line867"><span class="anchor" id="line-225"></span><span class="anchor" id="line-226"></span><span class="anchor" id="line-227"></span><span class="anchor" id="line-228"></span><span class="anchor" id="line-229"></span><span class="anchor" id="line-230"></span><span class="anchor" id="line-231"></span><span class="anchor" id="line-232"></span><span class="anchor" id="line-233"></span><span class="anchor" id="line-234"></span><span class="anchor" id="line-235"></span><span class="anchor" id="line-236"></span><span class="anchor" id="line-237"></span><pre><span class="anchor" id="line-1"></span>#if defined (__AVR_AT94K__)
+<span class="anchor" id="line-2"></span>#  include &lt;avr/ioat94k.h&gt;
+<span class="anchor" id="line-3"></span>#elif defined (__AVR_AT43USB320__)
+<span class="anchor" id="line-4"></span>#  include &lt;avr/io43u32x.h&gt;
+<span class="anchor" id="line-5"></span>
+<span class="anchor" id="line-6"></span>/* many many more entries */
+<span class="anchor" id="line-7"></span>
+<span class="anchor" id="line-8"></span>#else
+<span class="anchor" id="line-9"></span>#  if !defined(__COMPILING_AVR_LIBC__)
+<span class="anchor" id="line-10"></span>#    warning "device type not defined"
+<span class="anchor" id="line-11"></span>#  endif
+<span class="anchor" id="line-12"></span>#endif</pre><span class="anchor" id="line-238"></span><span class="anchor" id="line-239"></span><p class="line862">Add an entry for <tt>__AVR_mydevice__</tt> and include your new file <tt>avr/iomydevice.h</tt>. <span class="anchor" id="line-240"></span><span class="anchor" id="line-241"></span><p class="line862">If you don't want to change the existing <tt>avr/io.h</tt> then copy it to a new directory and add that directory as system search path by means of <tt>-isystem</tt> whenever you compile or preprocess a C or assembler source that shall include the extended <tt>avr/io.h</tt>. Notice that the new directory will contain a subdirectory named <tt>avr</tt>. <span class="anchor" id="line-242"></span><span class="anchor" id="line-243"></span><p class="line867">
+<h3 id="Compiling_the_Code">Compiling the Code</h3>
+<span class="anchor" id="line-244"></span><span class="anchor" id="line-245"></span><p class="line862">Let's start with a simple C program, <tt>source.c</tt>: <span class="anchor" id="line-246"></span><span class="anchor" id="line-247"></span><p class="line867"><span class="anchor" id="line-248"></span><span class="anchor" id="line-249"></span><span class="anchor" id="line-250"></span><span class="anchor" id="line-251"></span><span class="anchor" id="line-252"></span><span class="anchor" id="line-253"></span><span class="anchor" id="line-254"></span><span class="anchor" id="line-255"></span><span class="anchor" id="line-256"></span><pre><span class="anchor" id="line-1-1"></span>#include &lt;avr/io.h&gt;
+<span class="anchor" id="line-2-1"></span>
+<span class="anchor" id="line-3-1"></span>int var;
+<span class="anchor" id="line-4-1"></span>
+<span class="anchor" id="line-5-1"></span>int main (void)
+<span class="anchor" id="line-6-1"></span>{
+<span class="anchor" id="line-7-1"></span>    return var + SP;
+<span class="anchor" id="line-8-1"></span>}</pre><span class="anchor" id="line-257"></span><span class="anchor" id="line-258"></span><p class="line874">Your source directory then contains the following files: <span class="anchor" id="line-259"></span><span class="anchor" id="line-260"></span><ul><li style="list-style-type:none"><p class="line891"><tt>source.c&nbsp;&nbsp;&nbsp;&nbsp;gcrt1.S&nbsp;&nbsp;&nbsp;&nbsp;macros.inc&nbsp;&nbsp;&nbsp;&nbsp;sectionname.h</tt> <span class="anchor" id="line-261"></span><span class="anchor" id="line-262"></span></li></ul><p class="line862">The startup code <a class="http" href="http://svn.savannah.nongnu.org/viewvc/trunk/avr-libc/crt1/gcrt1.S?root=avr-libc&amp;view=markup">gcrt1.S</a> and <a class="http" href="http://svn.savannah.nongnu.org/viewvc/trunk/avr-libc/common/macros.inc?root=avr-libc&amp;view=markup">macros.inc</a> are verbatim copies from AVR Libc. <span class="anchor" id="line-263"></span><span class="anchor" id="line-264"></span><p class="line867"><tt>sectionname.h</tt> is included by <tt>macros.inc</tt> but we don't need it:  Simply provide  <tt>sectionname.h</tt> as an empty file. <span class="anchor" id="line-265"></span><span class="anchor" id="line-266"></span><p class="line862">For the matter of simplicity, we show how to compile for a device that is similar to ATmega8 so that we don't need to extend <tt>avr/io.h</tt> to show the work flow.  In the case you copied <tt>avr/io.h</tt> to a new place, don't forget to add respective <tt>-isystem</tt> to the first two commands for <tt>source.c</tt> and <tt>gcrt1.S</tt>. <span class="anchor" id="line-267"></span><span class="anchor" id="line-268"></span><p class="line862">ATmega8 is a device in core family <tt>avr4</tt>, thus we compile and assemble our <tt>source.c</tt> for that core architecture.  <tt>__AVR_ATmega8__</tt> stands for the subheader selector you added to <tt>avr/io.h</tt>. <span class="anchor" id="line-269"></span><span class="anchor" id="line-270"></span><ul><li style="list-style-type:none"><p class="line891"><tt>avr-gcc&nbsp;-mmcu=avr4&nbsp;-D__AVR_ATmega8__&nbsp;-c&nbsp;source.c&nbsp;-Os</tt> <span class="anchor" id="line-271"></span><span class="anchor" id="line-272"></span></li></ul><p class="line874">Similarly, we assemble the startup code for our device by means of: <span class="anchor" id="line-273"></span><span class="anchor" id="line-274"></span><ul><li style="list-style-type:none"><p class="line891"><tt>avr-gcc&nbsp;-mmcu=avr4&nbsp;-D__AVR_ATmega8__&nbsp;-c&nbsp;gcrt1.S&nbsp;-o&nbsp;crt0-mydevice.o</tt> <span class="anchor" id="line-275"></span><span class="anchor" id="line-276"></span></li></ul><p class="line862">Finally, we link the stuff together to get a working <tt>source.elf</tt> (assuming that RAM starts at address 0x124): <span class="anchor" id="line-277"></span><span class="anchor" id="line-278"></span><ul><li style="list-style-type:none"><p class="line891"><tt>avr-gcc&nbsp;-mmcu=avr4&nbsp;-Tdata&nbsp;0x800124&nbsp;source.o&nbsp;crt0-mydevice.o&nbsp;-nostartfiles&nbsp;-o&nbsp;source.elf</tt> <span class="anchor" id="line-279"></span><span class="anchor" id="line-280"></span></li></ul><p class="line874">Voilà! <span class="anchor" id="line-281"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">None: avr-gcc  (last edited 2013-06-23 19:06:31 by <span title="??? @ 179.210.24.114[179.210.24.114]">179</span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+
+<div id="footer">
+<ul class="editbar"><li><span class="disabled">Immutable Page</span></li><li class="toggleCommentsButton" style="display:none;"><a href="#" class="nbcomment" onClick="toggleComments();return false;">Comments</a></li><li><a class="nbinfo" href="/wiki/avr-gcc?action=info" rel="nofollow">Info</a></li><li><a class="nbattachments" href="/wiki/avr-gcc?action=AttachFile" rel="nofollow">Attachments</a></li><li>
+<form class="actionsmenu" method="GET" action="/wiki/avr-gcc">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Raw Text</option>
+<option value="print">Print View</option>
+<option value="RenderAsDocbook">Render as Docbook</option>
+<option value="refresh">Delete Cache</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Like Pages</option>
+<option value="LocalSiteMap">Local Site Map</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="RenamePage" disabled class="disabled">Rename Page</option>
+<option value="DeletePage" disabled class="disabled">Delete Page</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="show" disabled class="disabled">Subscribe User</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="show" disabled class="disabled">Remove Spam</option>
+<option value="show" disabled class="disabled">Revert to this revision</option>
+<option value="PackagePages">Package Pages</option>
+<option value="show" disabled class="disabled">------------------------</option>
+<option value="Load">Load</option>
+<option value="Save">Save</option>
+<option value="SlideShow">SlideShow</option>
+    </select>
+    <input type="submit" value="Do">
+    
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li></ul>
+
+<ul id="credits">
+<li><a href="http://moinmo.in/" title="This site uses the MoinMoin Wiki software.">MoinMoin Powered</a></li><li><a href="http://moinmo.in/Python" title="MoinMoin is written in Python.">Python Powered</a></li><li><a href="http://moinmo.in/GPL" title="MoinMoin is GPL licensed.">GPL licensed</a></li><li><a href="http://validator.w3.org/check?uri=referer" title="Click here to validate this page.">Valid HTML 4.01</a></li>
+</ul>
+
+
+</div>
+</body>
+</html>
+

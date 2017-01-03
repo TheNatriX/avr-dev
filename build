@@ -1,0 +1,9 @@
+#!/bin/sh
+
+find . -type f -name *.S -exec \
+        avr-gcc -g3 -gstabs -c -I$PWD -I$PWD/include -I$PWD/include/mcu -mmcu=atmega32 {} \;
+mkdir bin
+mv *.o bin/
+avr-ar rcs bin/libavr.a bin/*.o
+
+

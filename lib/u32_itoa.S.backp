@@ -1,0 +1,157 @@
+#include "config.h"
+#include "global.h"
+
+/*
+ * FIXME NEED OPTIMISATION!!!
+ * returns a pointer to string stored in X.
+ */
+.global	u32_to_decimal_ascii
+	u32_to_decimal_ascii:
+	push	rTMP1
+	push	rTMP2
+	push	YL
+	push	YH
+	push	r10
+	push	r13
+
+	/*	FIXME implement malloc	*/
+	/*	buffer address is SRAM_START+64,
+		and its length is 11 bytes long	*/
+	ldi	XL, lo8(SRAM_START)
+	ldi	XH, hi8(SRAM_START)
+	/*	XXX: make a pointer backup	*/
+	mov	YL, XL
+	mov	YH, XH
+	/*	FIXME: implement of memset
+		fill the buffer with '0'es	*/
+	ldi	rTMP1, '0'
+	clr	rTMP2
+1:	st	Y+, rTMP1
+	inc	rTMP2
+	cpi	rTMP2, 11
+	brne	1b
+	/*	write NULL at the end of string	*/
+	clr	rTMP2
+	st	Y, rTMP2
+	clr	r10
+	/*	load the 2^pow table	*/
+	ldi	ZL, lo8(power_of_two)
+	ldi	ZH, hi8(power_of_two)
+	/*	start to check bits. using rTMP2 which is already
+		cleared	by above operations. rTMP2 will be used
+		for incrementation.				*/
+next_bit:
+	/*	reset string address at each bit processing	*/
+	mov	YL, XL
+	mov	YH, XH
+	/*	skip processing if bit is zero	*/
+	sbrs	rARG1, 0
+	rjmp	skip_processing
+continue_sync:
+	/*	sync the exponent with table entry	*/
+	cp	r10, rTMP2		;Z is updated?
+	breq	load_flash_byte
+read_next:
+	lpm	rTMP3, Z+
+	cpi	rTMP3, 22
+	brne	read_next
+	inc	r10
+	rjmp	continue_sync
+load_flash_byte:
+	/*	load byte from table		*/
+	lpm	rTMP3,	Z+
+	/*	test the end of table entry	*/
+	cpi	rTMP3, 22
+	breq	end
+	/*	load ram byte and ramain on that
+		address because it must be written
+		down after some calculus	*/
+	ld	rTMP1, Y
+	/*	add bytes togheter		*/
+	add	rTMP1, rTMP3
+	/*	check it for overflow ( > '9' )	*/
+	cpi	rTMP1, 0x3a
+	brpl	overflow
+	/*	store the value and point to the next	*/
+	st	Y+, rTMP1
+	rjmp	load_flash_byte
+overflow:
+	/*	store current value of Y	*/
+	mov	r13, YL
+ovf_chain:
+	/*	e.g. 15 ---> 5 and store	*/
+	subi	rTMP1, 10
+	st	Y+, rTMP1
+	/*	load next, increment and store	*/
+	ld	rTMP1, Y
+	inc	rTMP1
+	st	Y, rTMP1
+	/*	check again if overflowed	*/
+	cpi	rTMP1, 0x3a
+	brpl	ovf_chain
+	/*	restore Y + 1 FIXME for 16 bits	*/
+	inc	r13
+	mov	YL, r13
+	rjmp	load_flash_byte
+end:	inc	r10
+skip_processing:
+	inc	rTMP2
+	/*	shift to next bit of big num	*/
+	ror	rARG4
+	ror	rARG3
+	ror	rARG2
+	ror	rARG1
+	/*	until all 32 bits are checked	*/
+	cpi	rTMP2, 32
+	brne	next_bit
+
+	pop	r13
+	pop	r10
+	pop	YH
+	pop	YL
+	pop	rTMP2
+	pop	rTMP1
+	ret
+
+
+
+/*
+ *	the 22 is the end of string.
+ */
+power_of_two:
+	.byte 1,22
+	.byte 2,22
+	.byte 4,22
+	.byte 8,22
+	.byte 6,1,22
+	.byte 2,3,22
+	.byte 4,6,22
+	.byte 8,2,1,22
+	.byte 6,5,2,22
+	.byte 2,1,5,22
+	.byte 4,2,0,1,22
+	.byte 8,4,0,2,22
+	.byte 6,9,0,4,22
+	.byte 2,9,1,8,22
+	.byte 4,8,3,6,1,22
+	.byte 8,6,7,2,3,22
+	.byte 6,3,5,5,6,22
+	.byte 2,7,0,1,3,1,22
+	.byte 4,4,1,2,6,2,22
+	.byte 8,8,2,4,2,5,22
+	.byte 6,7,5,8,4,0,1,22
+	.byte 2,5,1,7,9,0,2,22
+	.byte 4,0,3,4,9,1,4,22
+	.byte 8,0,6,8,8,3,8,22
+	.byte 6,1,2,7,7,7,6,1,22
+	.byte 2,3,4,4,5,5,3,3,22
+	.byte 4,6,8,8,0,1,7,6,22
+	.byte 8,2,7,7,1,2,4,3,1,22
+	.byte 6,5,4,5,3,4,8,6,2,22
+	.byte 2,1,9,0,7,8,6,3,5,22
+	.byte 4,2,8,1,4,7,3,7,0,1,22
+	.byte 8,4,6,3,8,4,7,4,1,2,22
+
+
+
+/****************** End Of u32_itoa.S File *******************/
