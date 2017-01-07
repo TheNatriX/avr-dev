@@ -8,7 +8,7 @@
  */
 
 #ifndef __SFR_OFFSET
-	#define __SFR_OFFSET 0
+#	define __SFR_OFFSET 0
 #endif
 
 #ifndef F_CPU
@@ -19,7 +19,7 @@
 #include <avr/io.h>
 
 #include "hd44780.h"
-#include "../pinout_config.h"
+#include "mcu.h"
 
 /*      GCC Register Layout     */
 

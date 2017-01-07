@@ -49,7 +49,7 @@
 #define LCD_SET_5X10_FONT		0b00000100	/*	used in LCD_INSTR_FUNCTION_SET		*/
 
 
-void lcd_init(uint8_t flags);
+void lcd_init(unsigned char flags);
 void lcd_send_data(unsigned char byte);
 void lcd_send_instr(unsigned char byte);
 void lcd_send_data_no_check(unsigned char byte);
@@ -59,7 +59,6 @@ unsigned char lcd_read_data(void);
 #ifdef LCD_COM_DUMMY_READ
 void lcd_wait_if_busy(void);
 #endif
-
-
+void lcd_print(const char *p);
 
 
