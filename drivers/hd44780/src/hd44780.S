@@ -7,10 +7,43 @@
  *		NatriX 2014
  */
 
-#include "config.h"
-#include "global.h"
-#include "hd44780.h"
+#ifndef __SFR_OFFSET
+	#define __SFR_OFFSET 0
+#endif
 
+#ifndef F_CPU
+#	warning "F_CPU NOT DEFINED! This should be same as in your project."
+#	warning "Please, see Makefile."
+#endif
+
+#include <avr/io.h>
+
+#include "hd44780.h"
+#include "../pinout_config.h"
+
+/*      GCC Register Layout     */
+
+/*
+ * TEMPORARY REGISTER.
+ * Is used as scratch register that need not to be restored after
+ * its usage. It must be saved and restored in interrupt service
+ * routine's (ISR) prologue and epilogue.
+ */
+#define __tmp_reg__ r0
+
+/*
+ * ZERO REGISTER.
+ *
+ * Always contains zero. During an insn the content might be destroyed,
+ * e.g. by a MUL instruction that uses R0/R1 as implicit output register.
+ * If an insn destroys R1, the insn must restore R1 to zero afterwards.
+ * This register must be saved in ISR prologues and must then be set to
+ * zero because R1 might contain values other than zero.
+ * The ISR epilogue restores the value.
+ */
+#define __zero_reg__ r1
+
+#define	__r_tmp1 r18
 
 .global lcd_init
 .global lcd_write_string
@@ -22,12 +55,8 @@
 .global lcd_read_data
 #endif	/* LCD_COM_DUMMY_READ	*/
 
-
-#define	__r_tmp1		r18
-
-
 /*
- * void lcd_init( uint8_t flags );
+ * void lcd_init(uint8_t flags);
  * Reset the LCD controller by instruction.
  */
 lcd_init:
@@ -158,14 +187,14 @@ lcd_init:
  */
 #ifdef	LCD_COM_4_BIT_MODE
 /*
- * void lcd_send_first_nibble( unsigned char byte );
+ * void lcd_send_first_nibble(unsigned char byte);
  */
 lcd_send_first_nibble:
 	set
 	rjmp again4
 #endif	/* LCD_COM_4_BIT_MODE	*/
 /*
- * void lcd_send_data( unsigned char byte );
+ * void lcd_send_data(unsigned char byte);
  */
 lcd_send_data:
 	/*	lcd_wait_if_busy will modify our r24 register
@@ -175,7 +204,7 @@ lcd_send_data:
 	mov	r24, __tmp_reg__
 	rjmp	lcd_send_data_no_check
 /*
- * void lcd_send_instr( unsigned char byte );
+ * void lcd_send_instr(unsigned char byte);
  */
 lcd_send_instr:
 	/*	lcd_wait_if_busy will modify our r24 register
@@ -184,12 +213,12 @@ lcd_send_instr:
 	rcall	lcd_wait_if_busy
 	mov	r24, __tmp_reg__
 /*
- * void lcd_send_instr_no_check( unsigned char byte );
+ * void lcd_send_instr_no_check(unsigned char byte);
  */
 lcd_send_instr_no_check:
 	rjmp	1f
 /*
- * void lcd_send_data_no_check( unsigned char byte );
+ * void lcd_send_data_no_check(unsigned char byte);
  */
 lcd_send_data_no_check:
 	sbi	LCD_COM_INSTR_PORT, LCD_COM_PIN_RS
@@ -213,11 +242,11 @@ again4:	sbrc	r24, 7
 	sbi	LCD_COM_INSTR_PORT, LCD_COM_PIN_E
 	nop
 	nop
-#if	CPU_FREQ > 4000000
+#if	F_CPU > 4000000
 	nop
 	nop
 	nop
-#endif	/* CPU_FREQ > 4000000	*/
+#endif	/* F_CPU > 4000000	*/
 
 	/*	turn E off	*/
 	cbi	LCD_COM_INSTR_PORT, LCD_COM_PIN_E
@@ -245,7 +274,7 @@ end4:	cbi	LCD_COM_INSTR_PORT, LCD_COM_PIN_RS
 
 #ifdef LCD_COM_DUMMY_READ
 /*
- *	void lcd_wait_if_busy( void );
+ *	void lcd_wait_if_busy(void);
  */
 lcd_wait_if_busy:
 	ldi	r24, 5
@@ -260,7 +289,7 @@ lcd_wait_if_busy:
 
 
 /*
- * unsigned char lcd_read_data( void );
+ * unsigned char lcd_read_data(void);
  * Reads a byte from LCD cursor.
  */
 lcd_read_data:
@@ -361,3 +390,4 @@ done_4bit:
 #endif	/* LCD_COM_4_BIT_MODE	*/
 	ret
 #endif	/* LCD_COM_DUMMY_READ	*/
+

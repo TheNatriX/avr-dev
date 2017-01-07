@@ -1,4 +1,3 @@
-
 /*
  * About:	A software driver for Hitachi LCD Controller HD44780.
  *		Provide both 8 bit and 4 bit operation mode.
@@ -6,11 +5,6 @@
  *
  *		NatriX 2014
  */
-
-
-
-#define	_HD44780_H
-
 
 
 #define LCD_INSTR_RESET			0b00110000
@@ -55,5 +49,17 @@
 #define LCD_SET_5X10_FONT		0b00000100	/*	used in LCD_INSTR_FUNCTION_SET		*/
 
 
+void lcd_init(uint8_t flags);
+void lcd_send_data(unsigned char byte);
+void lcd_send_instr(unsigned char byte);
+void lcd_send_data_no_check(unsigned char byte);
+void lcd_send_instr_no_check(unsigned char byte);
+void lcd_send_first_nibble(unsigned char byte);
+unsigned char lcd_read_data(void);
+#ifdef LCD_COM_DUMMY_READ
+void lcd_wait_if_busy(void);
+#endif
 
-#include "hd44780_config.h"
+
+
+
